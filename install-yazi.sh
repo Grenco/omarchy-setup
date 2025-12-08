@@ -1,3 +1,3 @@
-#!/bin/sh
+#!/bin/bash
 
-pacman -S --noconfirm --needed yazi
+sudo pacman -S --noconfirm --needed yazi

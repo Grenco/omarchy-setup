@@ -11,12 +11,12 @@ STARSHIP_TEMPLATE="$HOME/dotfiles/starship/.config/starship.toml.template"
 
 # Check if Omarchy is available
 if [ ! -e "$OMARCHY_THEME_LINK" ]; then
-    # No Omarchy - copy template with default Catppuccin Mocha
-    if [ -f "$STARSHIP_TEMPLATE" ]; then
-        cp "$STARSHIP_TEMPLATE" "$STARSHIP_CONFIG"
-        echo "No Omarchy theme detected, using default Catppuccin Mocha"
-    fi
-    exit 0
+  # No Omarchy - copy template with default Catppuccin Mocha
+  if [ -f "$STARSHIP_TEMPLATE" ]; then
+    cp "$STARSHIP_TEMPLATE" "$STARSHIP_CONFIG"
+    echo "No Omarchy theme detected, using default Catppuccin Mocha"
+  fi
+  exit 0
 fi
 
 # Get current theme
@@ -28,19 +28,19 @@ PALETTE_NAME=$(echo "$THEME_NAME" | tr '-' '_')
 ALACRITTY_FILE="$THEME_PATH/alacritty.toml"
 
 if [ ! -f "$ALACRITTY_FILE" ]; then
-    echo "Could not find alacritty.toml for theme: $THEME_NAME"
-    cp "$STARSHIP_TEMPLATE" "$STARSHIP_CONFIG" 2>/dev/null || true
-    exit 1
+  echo "Could not find alacritty.toml for theme: $THEME_NAME"
+  cp "$STARSHIP_TEMPLATE" "$STARSHIP_CONFIG" 2>/dev/null || true
+  exit 1
 fi
 
 # Extract colors from alacritty.toml
 parse_color() {
-    local section=$1
-    local key=$2
-    grep -A 20 "^\[colors.$section\]" "$ALACRITTY_FILE" 2>/dev/null | \
-        grep "^$key" | head -1 | \
-        sed -E "s/^$key *= *[\"']?0?x?#?([0-9a-fA-F]{6})[\"']?.*/\1/" | \
-        awk '{print "#" tolower($0)}'
+  local section=$1
+  local key=$2
+  grep -A 20 "^\[colors.$section\]" "$ALACRITTY_FILE" 2>/dev/null |
+    grep "^$key" | head -1 |
+    sed -E "s/^$key *= *[\"']?0?x?#?([0-9a-fA-F]{6})[\"']?.*/\1/" |
+    awk '{print "#" tolower($0)}'
 }
 
 # Primary colors
@@ -83,7 +83,7 @@ BRIGHT_WHITE=$(parse_color "bright" "white")
 cp "$STARSHIP_TEMPLATE" "$STARSHIP_CONFIG"
 
 # Build palette - map terminal colors to starship color names
-cat >> "$STARSHIP_CONFIG" << EOF
+cat >>"$STARSHIP_CONFIG" <<EOF
 
 # $THEME_NAME theme palette (auto-generated)
 [palettes.$PALETTE_NAME]

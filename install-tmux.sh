@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
 # Install tmux
-pacman -S --noconfirm --needed tmux
+sudo pacman -S --noconfirm --needed tmux
 
 # Check if tmux is installed
 if ! command -v tmux &>/dev/null; then

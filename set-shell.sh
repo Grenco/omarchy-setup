@@ -13,4 +13,4 @@ fi
 omarchy-setup-zsh
 
 # Change the default shell to zsh
-chsh -s "$ZSH_PATH"
+sudo chsh -s "$ZSH_PATH" $USER

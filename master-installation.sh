@@ -8,4 +8,6 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 "$SCRIPT_DIR/install-dotfiles.sh"
 "$SCRIPT_DIR/install-kanata.sh"
 
+"$SCRIPT_DIR/setup-starship-hook.sh"
+
 "$SCRIPT_DIR/set-shell.sh"
