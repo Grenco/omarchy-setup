@@ -25,13 +25,14 @@ fi
 # Check if the clone was successful
 if [ $? -eq 0 ]; then
   echo "removing old configs"
-  rm -rf ~/.config/nvim ~/.config/starship.toml ~/.config/kanata ~/.local/share/nvim/ ~/.cache/nvim/
+  rm -rf ~/.config/nvim ~/.config/starship.toml ~/.config/kanata ~/.local/share/nvim/ ~/.cache/nvim/ ~/.config/opencode/opencode.json
 
   cd "$REPO_NAME"
   stow tmux
   stow nvim
   stow starship
   stow kanata
+  stow opencode
 
   echo ""
   echo "Installation complete!"
