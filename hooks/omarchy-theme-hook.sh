@@ -5,12 +5,13 @@
 
 set -e
 
-OMARCHY_THEME_LINK="$HOME/.config/omarchy/current/theme"
+OMARCHY_THEME_PATH="$HOME/.local/state/omarchy/current/theme"
+OMARCHY_THEME_NAME_FILE="$HOME/.local/state/omarchy/current/theme.name"
 STARSHIP_CONFIG="$HOME/dotfiles/starship/.config/starship.toml"
 TMUX_COLORS_FILE="$HOME/.tmux/colors.conf"
 
 # Check if Omarchy is available
-if [ ! -e "$OMARCHY_THEME_LINK" ]; then
+if [ ! -d "$OMARCHY_THEME_PATH" ]; then
   echo "No Omarchy theme detected"
   # Reset starship to catppuccin_mocha
   if [ -f "$STARSHIP_CONFIG" ]; then
@@ -21,9 +22,9 @@ if [ ! -e "$OMARCHY_THEME_LINK" ]; then
   exit 0
 fi
 
-# Get current theme
-THEME_PATH=$(readlink -f "$OMARCHY_THEME_LINK")
-THEME_NAME=$(basename "$THEME_PATH")
+# The hook receives the theme slug; theme.name supports manual invocation.
+THEME_PATH="$OMARCHY_THEME_PATH"
+THEME_NAME=${1:-$(<"$OMARCHY_THEME_NAME_FILE")}
 PALETTE_NAME=$(echo "$THEME_NAME" | tr '-' '_')
 
 # Parse colors from alacritty.toml

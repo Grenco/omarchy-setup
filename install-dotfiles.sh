@@ -33,6 +33,7 @@ if [ $? -eq 0 ]; then
   stow starship
   stow kanata
   stow opencode
+  stow herdr
 
   echo ""
   echo "Installation complete!"

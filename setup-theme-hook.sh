@@ -2,7 +2,7 @@
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-if [ -e ~/.config/omarchy/current/theme/neovim.lua ]; then
+if [ -e ~/.local/state/omarchy/current/theme/neovim.lua ]; then
   # Set up theme hook (starship + tmux)
   if [ -f "$SCRIPT_DIR/hooks/omarchy-theme-hook.sh" ]; then
     mkdir -p ~/.config/omarchy/hooks
